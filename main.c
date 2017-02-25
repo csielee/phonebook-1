@@ -12,7 +12,7 @@
 #define OUT_FILE "orig.txt"
 #endif
 
-#define DICT_FILE "./dictionary/words.txt"
+#define DICT_FILE "./dictionary/all-names.txt"
 
 static double diff_in_second(struct timespec t1, struct timespec t2)
 {
@@ -69,6 +69,10 @@ int main(int argc, char *argv[])
     e = pHead;
 
     /* the givn last name to find */
+    /*fp = fopen(DICT_FILE,"r");
+    if(fp == NULL) {
+    	printf("cannot open the file\n");
+    }*/
     char input[MAX_LAST_NAME_SIZE] = "zyxel";
     e = pHead;
 
