@@ -37,6 +37,9 @@ cache-test: $(EXEC)
 		-e cache-misses,cache-references,instructions,cycles \
 		./phonebook_opt
 
+cache-clear:
+	echo 1 | sudo tee /proc/sys/vm/drop_caches
+
 output.txt: cache-test calculate
 	./calculate
 
@@ -45,6 +48,9 @@ plot: output.txt
 
 calculate: calculate.c
 	$(CC) $(CFLAGS_common) $^ -o $@
+
+astyle:
+	astyle --style=kr --indent=spaces=4 --indent-switches --suffix=none *.[ch]
 
 .PHONY: clean
 clean:
