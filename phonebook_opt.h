@@ -3,6 +3,7 @@
 
 #define MAX_LAST_NAME_SIZE 16
 #define HASH_SIZE 0x7FF
+#define POOL_SIZE 1000
 
 /* TODO: After modifying the original version, uncomment the following
  * line to set OPT properly */

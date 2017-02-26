@@ -52,6 +52,10 @@ calculate: calculate.c
 astyle:
 	astyle --style=kr --indent=spaces=4 --indent-switches --suffix=none *.[ch]
 
+perf-set:
+	sudo sh -c " echo 0 > /proc/sys/kernel/perf_event_paranoid"
+	sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
+
 .PHONY: clean
 clean:
 	$(RM) $(EXEC) *.o perf.* \

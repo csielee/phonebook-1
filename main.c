@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
 #endif
     /* compute the execution time */
     clock_gettime(CLOCK_REALTIME, &start);
-    findName(input, e);
+    e = findName(input, e);
     clock_gettime(CLOCK_REALTIME, &end);
     cpu_time2 = diff_in_second(start, end);
 
@@ -113,7 +113,9 @@ int main(int argc, char *argv[])
 
     printf("execution time of append() : %lf sec\n", cpu_time1);
     printf("execution time of findName() : %lf sec\n", cpu_time2);
-    printf("find name = %s\n",input);
+    printf("find name = %s",input);
+    if(e!=NULL)
+        printf(",has find!!\n");
 
     if (pHead->pNext) free(pHead->pNext);
     free(pHead);
