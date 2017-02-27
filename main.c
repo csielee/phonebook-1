@@ -117,7 +117,12 @@ int main(int argc, char *argv[])
     if(e!=NULL)
         printf(",has find!!\n");
 
-    if (pHead->pNext) free(pHead->pNext);
+    e = pHead;
+    if (e->pNext!=NULL) {
+        e = e->pNext;
+        free(pHead);
+        pHead = e;
+    }
     free(pHead);
 
     return 0;

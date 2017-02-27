@@ -3,7 +3,6 @@
 
 #define MAX_LAST_NAME_SIZE 16
 #define HASH_SIZE 0x7FF
-#define POOL_SIZE 1000
 
 /* TODO: After modifying the original version, uncomment the following
  * line to set OPT properly */
@@ -33,5 +32,13 @@ entry_hash hash_table[HASH_SIZE];
 entry *findName(char lastName[], entry *pHead);
 entry *append(char lastName[], entry *e);
 unsigned int hash(char str[]);
+
+
+#define MEMORYPOOL
+#define POOL_SIZE 1000
+
+typedef struct __MEMORYPOOL_HANDLE {
+    void *ptr;
+} mpHandle;
 
 #endif

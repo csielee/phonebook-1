@@ -9,10 +9,10 @@
 entry_hash hash_table[HASH_SIZE];
 #endif
 
-unsigned long int entry_memory_count=POOL_SIZE;
+int entry_memory_count=POOL_SIZE;
 entry *entry_memorypool;
 
-entry *getEntry()
+void *getEntry()
 {
     if(entry_memory_count==POOL_SIZE) {
         printf("get pool\n");
@@ -20,15 +20,15 @@ entry *getEntry()
         entry_memory_count=0;
     }
     //entry *e = entry_memorypool+sizeof(entry)*entry_memory_count;
-    entry *e = &entry_memorypool[entry_memory_count];
-    printf("%ld,%ld\n",entry_memory_count,(unsigned long int)e);
+    void *a = &entry_memorypool[entry_memory_count];
+    printf("%d,%lx\n",entry_memory_count,(unsigned long int)a);
     entry_memory_count++;
-    return e;
+    return a;
 }
 
 entry *findName(char lastName[], entry *pHead)
 {
-    pHead = hash_table[hash(lastName)].pHead;
+    pHead = hash_table[hash(lastName)].pHead->pNext;
     while(pHead!=NULL) {
         if(strcasecmp(pHead->lastName,lastName)==0)
             return pHead;
@@ -40,14 +40,14 @@ entry *findName(char lastName[], entry *pHead)
 entry *append(char lastName[], entry *e)
 {
     entry_hash *t = &hash_table[hash(lastName)];
-    if(t->pHead == NULL) {
+    if(t->pHead == NULL || t->pTail==NULL) {
         t->pHead = (entry *) malloc(sizeof(entry));
         //t->pHead->pNext = (entry *) malloc(sizeof(entry));
-        t->pHead->pNext = getEntry();
+        t->pHead->pNext = (entry *) getEntry();
         t->pTail = t->pHead->pNext;
     } else {
         //t->pTail->pNext = (entry *) malloc(sizeof(entry));
-        t->pTail->pNext = getEntry();
+        t->pTail->pNext = (entry *) getEntry();
         t->pTail = t->pTail->pNext;
     }
     strcpy(t->pTail->lastName,lastName);
