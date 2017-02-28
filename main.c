@@ -117,6 +117,8 @@ int main(int argc, char *argv[])
     if(e!=NULL)
         printf(",has find!!\n");
 
+#ifdef OPT
+#endif
     e = pHead;
     if (e->pNext!=NULL) {
         e = e->pNext;

@@ -5,23 +5,17 @@
 
 #include "phonebook_opt.h"
 
-#ifndef hash_table
-entry_hash hash_table[HASH_SIZE];
-#endif
-
 int entry_memory_count=POOL_SIZE;
 entry *entry_memorypool;
 
 void *getEntry()
 {
     if(entry_memory_count==POOL_SIZE) {
-        printf("get pool\n");
         entry_memorypool = (entry *)malloc(sizeof(entry)*POOL_SIZE);
         entry_memory_count=0;
     }
     //entry *e = entry_memorypool+sizeof(entry)*entry_memory_count;
     void *a = &entry_memorypool[entry_memory_count];
-    printf("%d,%lx\n",entry_memory_count,(unsigned long int)a);
     entry_memory_count++;
     return a;
 }

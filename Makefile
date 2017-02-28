@@ -56,6 +56,11 @@ perf-set:
 	sudo sh -c " echo 0 > /proc/sys/kernel/perf_event_paranoid"
 	sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
 
+hash-plot:
+	gcc -o hashdistribute hashdistribute.c phonebook_opt.c phonebook_opt.h -lm
+	./hashdistribute
+	gnuplot scripts/hashtime.gp
+
 .PHONY: clean
 clean:
 	$(RM) $(EXEC) *.o perf.* \

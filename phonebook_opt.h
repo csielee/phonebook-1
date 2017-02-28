@@ -27,12 +27,13 @@ typedef struct __ENTRY_HASH {
     entry *pHead;
     entry *pTail;
 } entry_hash;
-entry_hash hash_table[HASH_SIZE];
+#ifndef hash_table
+entry_hash hash_table[HASH_SIZE+1];
+#endif
 
 entry *findName(char lastName[], entry *pHead);
 entry *append(char lastName[], entry *e);
 unsigned int hash(char str[]);
-
 
 #define MEMORYPOOL
 #define POOL_SIZE 1000
