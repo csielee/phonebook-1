@@ -57,7 +57,7 @@ perf-set:
 	sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
 
 hash-plot:
-	gcc -o hashdistribute hashdistribute.c phonebook_opt.c phonebook_opt.h -lm
+	gcc -o hashdistribute hashdistribute.c -lm
 	./hashdistribute
 	gnuplot scripts/hashtime.gp
 
