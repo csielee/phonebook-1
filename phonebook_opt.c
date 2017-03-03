@@ -8,7 +8,7 @@
 int entry_memory_count=POOL_SIZE;
 entry *entry_memorypool;
 
-void *getEntry ()
+void *getEntry()
 {
     if (entry_memory_count==POOL_SIZE) {
         entry_memorypool = (entry *)malloc(sizeof(entry)*POOL_SIZE);
@@ -19,7 +19,7 @@ void *getEntry ()
     return a;
 }
 
-entry *findName (char lastName[], entry *pHead)
+entry *findName(char lastName[], entry *pHead)
 {
     pHead = hash_table[hash(lastName)].pHead->pNext;
     while (pHead!=NULL) {
@@ -30,7 +30,7 @@ entry *findName (char lastName[], entry *pHead)
     return NULL;
 }
 
-entry *append (char lastName[], entry *e)
+entry *append(char lastName[], entry *e)
 {
     entry_hash *t = &hash_table[hash(lastName)];
     if (t->pHead == NULL || t->pTail==NULL) {
@@ -46,7 +46,7 @@ entry *append (char lastName[], entry *e)
     return e;
 }
 
-unsigned int BKDRHash (char *str)
+unsigned int BKDRHash(char *str)
 {
     unsigned int seed=131;
     unsigned int hash=0;
@@ -55,7 +55,7 @@ unsigned int BKDRHash (char *str)
 
     return (hash & HASH_SIZE);
 }
-unsigned int hash (char str[])
+unsigned int hash(char str[])
 {
     return BKDRHash(str);
 }

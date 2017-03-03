@@ -12,7 +12,7 @@ unsigned int BKDRHash(char *str)
 {
     unsigned int seed = 131;
     unsigned int hash = 0;
-    while(*str)
+    while (*str)
         hash = hash * seed +(*str++);
 
     return (hash & HASH_SIZE);
@@ -67,24 +67,24 @@ unsigned int hash(char str[])
 
 int main(int argc,char *argv[])
 {
-    if(argc > 1)
+    if (argc > 1)
         HASH_SIZE = (unsigned int)atoi(argv[1]);
 
     printf("HASH_SIZE = %u\n",HASH_SIZE);
     int hash_value[HASH_SIZE+1],i=0,count=0;
-    for(i=0; i<HASH_SIZE+1; i++)
+    for (i=0; i<HASH_SIZE+1; i++)
         hash_value[i] = 0;
 
     double standard=0.0;
     char str[MAX_LAST_NAME_SIZE];
     FILE *fp = fopen(DICT_FILE,"r");
-    if(fp==NULL) {
+    if (fp==NULL) {
         printf("cannot open the file\n");
         return -1;
     }
     i=0;
-    while(fgets(str,sizeof(str),fp)) {
-        while(str[i] != '\0')
+    while (fgets(str,sizeof(str),fp)) {
+        while (str[i] != '\0')
             i++;
         str[i-1] = '\0';
         i = 0;
@@ -94,12 +94,12 @@ int main(int argc,char *argv[])
     fclose(fp);
 
     fp = fopen(OUT_FILE,"w");
-    if(fp==NULL) {
+    if (fp==NULL) {
         printf("cannot open the file\n");
         return -1;
     }
     double average = ((double)count)/((double)(HASH_SIZE+1));
-    for(i=0; i<HASH_SIZE+1; i++) {
+    for (i=0; i<HASH_SIZE+1; i++) {
         fprintf(fp,"%d %d\n",i,hash_value[i]);
         standard += ((double)hash_value[i]-average)*((double)hash_value[i]-average);
     }
