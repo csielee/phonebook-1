@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     char input[MAX_LAST_NAME_SIZE] = "zyxel";
     count = 0;
     fp = fopen(DICT_FILE,"r");
-    if(fp == NULL) {
+    if (fp == NULL) {
         printf("cannot open the file\n");
     }
     i = 0;
@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
     printf("execution time of append() : %lf sec\n", cpu_time1);
     printf("execution time of findName() : %lf sec\n", cpu_time2);
     printf("find name = %s",input);
-    if(e!=NULL)
+    if (e!=NULL)
         printf(",has find!!\n");
 
 #ifdef OPT
